@@ -1,8 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PlanetsContext from '../context/planetsContext';
 
 function Home() {
   const { data, isLoading, dataError } = useContext(PlanetsContext);
+  const [filteredName, setFilteredName] = useState('');
+
+  const handleChange = ({ target }) => {
+    const { value } = target;
+    setFilteredName(value);
+  };
+
+  const filteredData = data.filter((element) => element.name.toLowerCase()
+    .includes(filteredName.toLowerCase()));
+
   if (dataError) {
     return (
       <p>Um erro inesperado ocorreu</p>
@@ -16,6 +26,11 @@ function Home() {
   return (
     <>
       <h1>Starwars Planets</h1>
+      <input
+        type="text"
+        data-testid="name-filter"
+        onChange={ (event) => handleChange(event) }
+      />
       <table>
         <tr>
           <th>Name</th>
@@ -32,7 +47,7 @@ function Home() {
           <th>Edited</th>
           <th>URL</th>
         </tr>
-        { data.map((element, index) => (
+        { filteredData.map((element, index) => (
           <tr key={ index }>
             <td>{element.name}</td>
             <td>{element.rotation_period}</td>
