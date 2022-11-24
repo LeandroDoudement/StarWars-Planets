@@ -21,21 +21,17 @@ function Home() {
     const newFilteredData = filterTypes
       .reduce((accumulator, filter) => accumulator
         .filter((planet) => {
-          // console.log(filter.selectedComparison);
           switch (filter.selectedComparison) {
           case 'maior que':
             return planet[filter.selectedColumn] > Number(filter.valueFilter);
           case 'menor que':
             return planet[filter.selectedColumn] < Number(filter.valueFilter);
           case 'igual a':
-            // console.log(planet[filter.selectedColumn]);
-            console.log(planet[filter.selectedColumn], Number(filter.valueFilter));
             return planet[filter.selectedColumn] === filter.valueFilter;
           default:
             return true;
           }
         }), filteredByName);
-    // console.log(newFilteredData);
     setFilteredData(newFilteredData);
   }, [filteredName, filterTypes]);
 
@@ -106,7 +102,7 @@ function Home() {
 
         </p>
       ))}
-      <table>
+      <table className=" planetsTable ">
         <thead>
           <tr>
             <th>Name</th>
