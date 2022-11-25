@@ -102,4 +102,37 @@ describe("Testes do componente table", () => {
     const tableData = await screen.findAllByRole("cell");
     expect(tableData.length).toBe(26);
   });
+  it("Deve ser possivel apagar um filtro individualmente e todos ao clicar no botão remover todos os filtros", async () => {
+    render(<App />);
+    const columnFilter = screen.getByTestId("column-filter");
+    const comparisonFilter = screen.getByTestId("comparison-filter");
+    const valueFilter = screen.getByTestId("value-filter");
+    const buttonFilter = screen.getByTestId("button-filter");
+    userEvent.selectOptions(columnFilter, ["orbital_period"]);
+    userEvent.selectOptions(comparisonFilter, ["maior que"]);
+    userEvent.clear(valueFilter);
+    userEvent.type(valueFilter, "1000");
+    userEvent.click(buttonFilter);
+    const yavinIV = await screen.findByText("Yavin IV");
+    userEvent.selectOptions(columnFilter, ["diameter"]);
+    userEvent.selectOptions(comparisonFilter, ["maior que"]);
+    userEvent.clear(valueFilter);
+    userEvent.type(valueFilter, "10200");
+    userEvent.click(buttonFilter);
+    expect(yavinIV).not.toBeInTheDocument();
+    const filters = await screen.findAllByRole("button", {
+      name: "Remover filtro",
+    });
+    userEvent.click(filters[1]);
+    expect(filters[1]).not.toBeInTheDocument();
+    userEvent.click(buttonFilter);
+    const removeAllFilter = screen.getByRole("button", {
+      name: "Remover todos os filtros",
+    });
+    userEvent.click(removeAllFilter);
+    const filters2 = screen.queryAllByRole("button", {
+      name: "Remover filtro",
+    });
+    expect(filters2.length).toBe(0);
+  });
 });
