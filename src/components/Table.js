@@ -44,6 +44,26 @@ function Home() {
     setFilterTypes([...filterTypes, newFilterTypes]);
   };
 
+  const deleteFilterType = (index) => {
+    setFilterTypes(filterTypes.filter((_filter, filterIndex) => filterIndex !== index));
+  };
+
+  const tableHeads = [
+    'Name',
+    'Rotation Period',
+    'Orbital Period',
+    'Diameter',
+    'Climate',
+    'Gravity',
+    'Terrain',
+    'Surface Water',
+    'Population',
+    'Films',
+    'Created',
+    'Edited',
+    'URL',
+  ];
+
   if (dataError) {
     return (
       <p>Um erro inesperado ocorreu</p>
@@ -94,30 +114,35 @@ function Home() {
         Filter
 
       </button>
-      {filterTypes && filterTypes.map((element, index) => (
-        <p key={ index }>
-          {`${element.selectedColumn} 
+      <button
+        type="button"
+        data-testid="button-remove-filters"
+        onClick={ () => setFilterTypes([]) }
+      >
+        Remover todos os filtros
+
+      </button>
+      <ul>
+        {filterTypes && filterTypes.map((element, index) => (
+          <li key={ index } data-testid="filter">
+            {`${element.selectedColumn} 
           ${element.selectedComparison} 
           ${element.valueFilter}`}
-
-        </p>
-      ))}
+            <button
+              type="button"
+              onClick={ () => deleteFilterType(index) }
+            >
+              Remover filtro
+            </button>
+          </li>
+        ))}
+      </ul>
       <table className=" planetsTable ">
         <thead>
           <tr>
-            <th>Name</th>
-            <th>Rotation Period</th>
-            <th>Orbital Period</th>
-            <th>Diameter</th>
-            <th>Climate</th>
-            <th>Gravity</th>
-            <th>Terrain</th>
-            <th>Surface Water</th>
-            <th>Population</th>
-            <th>Films</th>
-            <th>Created</th>
-            <th>Edited</th>
-            <th>URL</th>
+            {tableHeads.map((element, index) => (
+              <th key={ index }>{element}</th>
+            ))}
           </tr>
         </thead>
         <tbody>
