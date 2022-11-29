@@ -60,7 +60,7 @@ function Home() {
   }
   if (isLoading) {
     return (
-      <p>Loading</p>
+      <p>Carregando a tabela...</p>
     );
   }
   return (
