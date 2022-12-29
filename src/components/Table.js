@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import PlanetsContext from '../context/planetsContext';
 import { tableHeads, initialColumns } from '../services/data';
+import '../styles/Table.css';
 
 function Home() {
   const { data, isLoading, dataError } = useContext(PlanetsContext);
@@ -64,51 +65,62 @@ function Home() {
     );
   }
   return (
-    <>
-      <h1>Starwars Planets</h1>
-      <input
-        type="text"
-        data-testid="name-filter"
-        onChange={ (event) => setFilteredName(event.target.value) }
-      />
-      <select
-        data-testid="column-filter"
-        onChange={ (event) => setSelectedColumn(event.target.value) }
-      >
-        {columns.map((element, index) => (
-          <option value={ element } key={ index }>{element}</option>
-        ))}
-      </select>
-      <select
-        data-testid="comparison-filter"
-        onChange={ (event) => setSelectedComparison(event.target.value) }
-      >
-        <option value="maior que">maior que</option>
-        <option value="menor que">menor que</option>
-        <option value="igual a">igual a</option>
-      </select>
-      <input
-        type="number"
-        data-testid="value-filter"
-        value={ valueFilter }
-        onChange={ (event) => setValueFilter(event.target.value) }
-      />
-      <button
-        type="button"
-        data-testid="button-filter"
-        onClick={ () => handleFilterTypes() }
-      >
-        Filter
+    <div className="white-box">
+      <div className="name-filter-box">
+        <input
+          type="text"
+          data-testid="name-filter"
+          onChange={ (event) => setFilteredName(event.target.value) }
+          className="name-filter"
+        />
+      </div>
+      <div className="filters-box">
+        <div>
+          <select
+            data-testid="column-filter"
+            onChange={ (event) => setSelectedColumn(event.target.value) }
+          >
+            {columns.map((element, index) => (
+              <option value={ element } key={ index }>{element}</option>
+            ))}
+          </select>
+          <select
+            data-testid="comparison-filter"
+            onChange={ (event) => setSelectedComparison(event.target.value) }
+          >
+            <option value="maior que">maior que</option>
+            <option value="menor que">menor que</option>
+            <option value="igual a">igual a</option>
+          </select>
+          <input
+            type="number"
+            data-testid="value-filter"
+            value={ valueFilter }
+            onChange={ (event) => setValueFilter(event.target.value) }
+            className="value-filter"
+          />
+        </div>
+        <div>
+          <button
+            type="button"
+            data-testid="button-filter"
+            onClick={ () => handleFilterTypes() }
+            className="filter-button"
+          >
+            Filter
 
-      </button>
-      <button
-        type="button"
-        data-testid="button-remove-filters"
-        onClick={ () => setFilterTypes([]) }
-      >
-        Remover todos os filtros
+          </button>
+          <button
+            type="button"
+            data-testid="button-remove-filters"
+            onClick={ () => setFilterTypes([]) }
+            className="filter-button"
+          >
+            Remover todos os filtros
 
-      </button>
+          </button>
+        </div>
+      </div>
       <ul>
         {filterTypes && filterTypes.map((element, index) => (
           <li key={ index } data-testid="filter">
@@ -152,7 +164,7 @@ function Home() {
           )) }
         </tbody>
       </table>
-    </>
+    </div>
   );
 }
 

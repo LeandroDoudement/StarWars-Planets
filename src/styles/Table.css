@@ -1,0 +1,73 @@
+body {
+  background-image: url("../images/background.png");
+  font-family: Epilogue;
+}
+
+.white-box {
+  border: 1px solid white;
+  border-radius: 20px;
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 1000px;
+}
+
+.name-filter-box {
+  text-align: center;
+}
+
+.name-filter {
+  border: 1px solid white;
+  border-radius: 5px;
+  height: 20px;
+  margin: 10px;
+  width: 300px;
+}
+
+.filters-box {
+  align-items: center;
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+}
+
+.filters-box div {
+  gap: 10px;
+}
+
+select {
+  background-color: #03100d;
+  border-bottom: 1px solid white;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  height: 30px;
+  line-height: 18px;
+  width: 100px;
+}
+
+.value-filter {
+  background-color: #03100d;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  height: 25px;
+  line-height: 18px;
+  width: 70px;
+}
+
+.filter-button {
+  align-items: center;
+  background-color: #03100d;
+  border: 1px solid #fae60a;
+  border-radius: 5px;
+  color: #fae60a;
+  font-size: 14px;
+  font-weight: 700;
+  height: 70px;
+  line-height: 18px;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100px;
+}

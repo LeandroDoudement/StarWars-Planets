@@ -3,6 +3,7 @@ import './App.css';
 import Table from './components/Table';
 import PlanetsContext from './context/planetsContext';
 import useData from './hooks/useData';
+import Header from './components/Header';
 
 function App() {
   const { isLoading, data, dataError, fetchData } = useData('https://swapi.dev/api/planets');
@@ -18,6 +19,7 @@ function App() {
 
   return (
     <PlanetsContext.Provider value={ storage }>
+      <Header />
       <Table />
     </PlanetsContext.Provider>
   );
