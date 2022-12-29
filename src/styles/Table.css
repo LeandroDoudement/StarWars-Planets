@@ -7,7 +7,9 @@ body {
   border: 1px solid white;
   border-radius: 20px;
   box-sizing: border-box;
+  color: white;
   margin: 0 auto;
+  overflow: auto;
   width: 1000px;
 }
 
@@ -23,6 +25,10 @@ body {
   width: 300px;
 }
 
+.name-filter::placeholder {
+  text-align: center;
+}
+
 .filters-box {
   align-items: center;
   display: flex;
@@ -31,6 +37,7 @@ body {
 }
 
 .filters-box div {
+  display: flex;
   gap: 10px;
 }
 
@@ -70,4 +77,32 @@ select {
   text-align: center;
   text-transform: uppercase;
   width: 100px;
+}
+
+.filter-type {
+  display: flex;
+  font-style: italic;
+  gap: 10px;
+}
+
+.delete-filter {
+  color: red;
+}
+
+th {
+  align-items: center;
+  background: #2e3035;
+  border: 1px solid black;
+  border-radius: 1px 0 0;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  height: 70px;
+  line-height: 18px;
+  max-width: 100px;
+}
+
+td {
+  max-width: 100px;
+  overflow: auto;
 }

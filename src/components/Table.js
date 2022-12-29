@@ -1,4 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faX } from '@fortawesome/free-solid-svg-icons';
 import PlanetsContext from '../context/planetsContext';
 import { tableHeads, initialColumns } from '../services/data';
 import '../styles/Table.css';
@@ -72,6 +74,7 @@ function Home() {
           data-testid="name-filter"
           onChange={ (event) => setFilteredName(event.target.value) }
           className="name-filter"
+          placeholder="Pesquise um planeta por nome"
         />
       </div>
       <div className="filters-box">
@@ -123,16 +126,15 @@ function Home() {
       </div>
       <ul>
         {filterTypes && filterTypes.map((element, index) => (
-          <li key={ index } data-testid="filter">
+          <li key={ index } data-testid="filter" className="filter-type">
             {`${element.selectedColumn} 
           ${element.selectedComparison} 
           ${element.valueFilter}`}
-            <button
-              type="button"
+            <FontAwesomeIcon
+              icon={ faX }
+              className="delete-filter"
               onClick={ () => deleteFilterType(index) }
-            >
-              Remover filtro
-            </button>
+            />
           </li>
         ))}
       </ul>
